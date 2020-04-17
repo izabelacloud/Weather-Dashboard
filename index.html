@@ -20,11 +20,11 @@
         <!-- Navbar content -->
         <h1>Weather Dashboard</h1>
       </nav>
-    <main class="flex-row justify-space-between">
+    <main class="flex-row justify-space-between container">
         <div class="col-4">
 
-        <form class="" id="cityinputform">
-            <h3 class="">Search For City</h3>
+        <form id="cityinputform">
+            <h3>Search for a City:</h3>
             <input class="form-input form-label" type="text" placeholder="Search.." name="city" id="cityinput">
             <!-- <button type="submit"><i class="fa fa-search btn" id="searchbtnid"></i></button> -->
             <button type="submit" class="btn fa fa-search" id="searchbtnid"></button>
@@ -32,7 +32,7 @@
 
 
         <div>
-        <p>Placeholder for History results</p>
+        <!-- <p>Placeholder for History results</p> -->
         </div>
     
         </div>
@@ -40,22 +40,26 @@
 
     
         <div class="col-8">
-          <h2 class="subtitle"><span id="city-search-term"></span></h2>           
+
+          <h3><span id="city-search-term"></span></h3>           
           <div id="result-container" >
-            <h2 id="city-container"></h2>
+
+            <h3 id="city-container"></h3>
             <img id="icon">
            
-            <!-- <p>Temperature: </p>
-            <p>Humidity: </p>
-            <p>Wind Speed: </p>
-            <p>UV Index</p> -->
+            <div>
+              <p id="temperature"></p>
+              <p id="humidity"></p>
+              <p id="windspeed"></p>
+              <p><span id="uvindex" class=""></span></p>
+              <img id="uvicon">
+            </div>
 
-
-          </div>
+        </div>
 
   
           <div id="fiveday-container" class="list-group">
-            <h2 class="subtitle">5-Day Forecast<span id="fiveday-search-term"></span></h2>
+            <h3 class="subtitle">5-Day Forecast<span id="fiveday-search-term"></span></h3>
           </div>
 
         </div>
@@ -63,6 +67,7 @@
 
     
       </main>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!--add touch punch here-->

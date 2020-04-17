@@ -22,17 +22,6 @@
   }
 
   
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
-    margin: 0;
-    /* color: white; */
-    line-height: 1.25;
-  }
 
   h1 {
       color: white;
@@ -50,9 +39,9 @@
   }
   
    
-  p {
+  /* p {
     font-size: 1.2rem;
-  }
+  } */
   
    .btn {
     /* display: flex;
@@ -147,21 +136,27 @@
   .list-item:hover {
     /* background-color: var(--dark); */
   }
-  
+/*   
   .status-icon {
     padding: 2px 5px;
     margin: 0 5px;
     background-color: rgba(255,255,255, 1);
     border-radius: var(--border-radius);
-  }
+  } */
   
-  .icon-danger {
+  /* .icon-danger {
     color: rgb(255, 70, 70);
-  }
+  } */
+
+  /* .uvicon {
+    height: 1px;
+    width: 1px;
+    padding: 100px;
+  } */
   
-  .icon-success {
+  /* .icon-success {
     color: rgb(29, 153, 255);
-  }
+  } */
 
   .icon {
     padding: 10px;
