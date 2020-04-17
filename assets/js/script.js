@@ -28,7 +28,7 @@ var uvUrl
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityName = cityInputEl.value.trim();
-    console.log(cityName);
+    // console.log(cityName);
     var apiFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=813b5c16fd3ec3678dd044ecba8f628a";
 
     if (cityName) {
@@ -42,7 +42,7 @@ var formSubmitHandler = function(event) {
     } else {
         alert("Please enter a City")
     }
-    console.log(event);
+    // console.log(event);
 }
 
 
@@ -64,15 +64,15 @@ var getWeatherPerCity = function(city) {
         //if request was successful 
         if (response.ok) {
             response.json().then(function(jsonResponse) {
-                console.log(jsonResponse);
+                // console.log(jsonResponse);
                 //this was added to convert the response data to JSON, it will be sent from getUserRepos() to displayRepos()
                 // displayRepos(data, user)
              var cityName = jsonResponse.name; 
-             console.log(cityName);
+            //  console.log(cityName);
 
             //find correct date in the requested format
             var currentDate = moment().format('(MM/DD/YYYY)')
-            console.log(currentDate)
+            // console.log(currentDate)
             // var newDate = moment(currentDate).add(10, 'hours')
             // console.log(newDate)
             // var currentDate = moment.timezone(-25200).format("(MM/DD/YYYY)");
@@ -93,39 +93,39 @@ var getWeatherPerCity = function(city) {
             // var dt = jsonResponse.timezone; 
             // console.log(timezone);
 
-            var localDt = jsonResponse.dt;
-            console.log("this is localdt" + localDt);
+            // var localDt = jsonResponse.dt;
+            // console.log("this is localdt" + localDt);
            
 
 
-            var dt = 1587087166
-            const unixTimestamp = 1587087166
+            // var dt = 1587087166
+            // const unixTimestamp = 1587087166
  
-            const milliseconds = 1587087166 * 1000 // 1575909015000
+            // const milliseconds = 1587087166 * 1000 // 1575909015000
             
-            const dateObject = new Date(milliseconds)
+            // const dateObject = new Date(milliseconds)
             
-            const humanDateFormat = dateObject.toLocaleString()
-            console.log(humanDateFormat);
+            // const humanDateFormat = dateObject.toLocaleString()
+            // console.log(humanDateFormat);
 
 
 
 
 
-            var utcSeconds = 1587084500;
-            var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-            d.setUTCSeconds(utcSeconds);
-            console.log(d)
+            // var utcSeconds = 1587084500;
+            // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+            // d.setUTCSeconds(utcSeconds);
+            // console.log(d)
 
-            var dateString = moment.unix(utcSeconds).format("(MM/DD/YYYY)");
-            console.log(dateString);
+            // var dateString = moment.unix(utcSeconds).format("(MM/DD/YYYY)");
+            // console.log(dateString);
 
 
 
 
             //this conditionality handles conditional show and hide of images based on the response --> source for codes: https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
             var weatherIcon = jsonResponse.weather[0].main;
-            console.log(weatherIcon);
+            // console.log(weatherIcon);
 
             if (weatherIcon === "Clouds") {
                 iconEl.setAttribute("src", "./assets/images/overcast.png");
@@ -157,22 +157,22 @@ var getWeatherPerCity = function(city) {
 
             //get temperature data
             var temperature = jsonResponse.main.temp; 
-            console.log(temperature + " ℃");
+            // console.log(temperature + " ℃");
 
             //get humidity data
             var humidity = jsonResponse.main.humidity;
-            console.log(humidity + "%");
+            // console.log(humidity + "%");
 
             //get wind speed data
             var windSpeed = jsonResponse.wind.speed;
-            console.log(windSpeed + " MPH");
+            // console.log(windSpeed + " MPH");
 
             //get latitude data
             lat = jsonResponse.coord.lat;
-            console.log(lat);
+            // console.log(lat);
             //get longitude data
             lon = jsonResponse.coord.lon;
-            console.log(lon);
+            // console.log(lon);
             //define URL for UV index based on the retrieved data from the one day weather api and pass it into the URL
             uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=813b5c16fd3ec3678dd044ecba8f628a&lat=" + lat + "&lon=" + lon;
             //call the getUvIndex function
@@ -250,8 +250,17 @@ var getWeatherPerCity = function(city) {
     var getFiveDayForecast = function (apiFiveDayUrl) {
         fetch(apiFiveDayUrl).then(function(response) {
             if(response.ok) {
-                response.json().then(function (responseapiFiveDayUrl) {
-                    console.log(responseapiFiveDayUrl);
+                response.json().then(function (responseapiFiveDayResponse) {
+                    console.log(responseapiFiveDayResponse);
+                    
+                    //get date data
+                    // var temperature = jsonResponse.main.temp; 
+                    // console.log(temperature + " ℃");
+                    var day1 = responseapiFiveDayResponse.list[0].dt;
+                    console.log("day1 unixdate" + day1);
+
+
+
                 })
             }
             else {
@@ -269,13 +278,13 @@ var getWeatherPerCity = function(city) {
         fetch(uvUrl).then(function(response) {
             if(response.ok) {
                 response.json().then(function (responseUvUrl) {
-                    console.log(responseUvUrl);
+                    // console.log(responseUvUrl);
                     //get UV index data
                     var uvIndex = responseUvUrl.value;
                     // uvIndex.setAttribute("class", "icon-danger")
 
                     // uvindexEl.className = "icon-danger";
-                    console.log(uvIndex);
+                    // console.log(uvIndex);
 
                     //conditionality to add a indicator / image for the UV index color
                     if (uvIndex >=0 && uvIndex <3) {
