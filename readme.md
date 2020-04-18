@@ -21,7 +21,7 @@ We use GitHub (https://github.com/) for versioning. For the versions available, 
 
 ## Website Preview
 
-![Weather Dashboard](TBD)
+![Weather Dashboard](https://github.com/izabelacloud/Weather-Dashboard/blob/master/assets/images/weatherdashboardpreview.png?raw=true)
 
 
 ## Authors
