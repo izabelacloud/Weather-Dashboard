@@ -22,27 +22,30 @@ var cardbody3El = document.querySelector("#cardbody3")
 var cardbody4El = document.querySelector("#cardbody4")
 var cardbody5El = document.querySelector("#cardbody5")
 
-
 var futureday1titleEl = document.querySelector("#futureday1title");
 var futureday2titleEl = document.querySelector("#futureday2title");
 var futureday3titleEl = document.querySelector("#futureday3title");
 var futureday4titleEl = document.querySelector("#futureday4title");
 var futureday5titleEl = document.querySelector("#futureday5title");
+
 var futureday1iconEl = document.querySelector("#futureday1icon");
 var futureday2iconEl = document.querySelector("#futureday2icon");
 var futureday3iconEl = document.querySelector("#futureday3icon");
 var futureday4iconEl = document.querySelector("#futureday4icon");
 var futureday5iconEl = document.querySelector("#futureday5icon");
+
 var futuredaytemp1El = document.querySelector("#futuredaytemp1");
 var futuredaytemp2El = document.querySelector("#futuredaytemp2");
 var futuredaytemp3El = document.querySelector("#futuredaytemp3");
 var futuredaytemp4El = document.querySelector("#futuredaytemp4");
 var futuredaytemp5El = document.querySelector("#futuredaytemp5");
+
 var futuredayhum1El = document.querySelector("#futuredayhum1");
 var futuredayhum2El = document.querySelector("#futuredayhum2");
 var futuredayhum3El = document.querySelector("#futuredayhum3");
 var futuredayhum4El = document.querySelector("#futuredayhum4");
 var futuredayhum5El = document.querySelector("#futuredayhum5");
+
 var weatherdataidEl = document.querySelector("#weatherdataid");
 //variable to manage hidden section
 var showHiddenEl = document.querySelector("#hidden");
