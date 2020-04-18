@@ -121,63 +121,60 @@ var getWeatherPerCity = function(city) {
         //if request was successful 
         if (response.ok) {
             response.json().then(function(jsonResponse) {
-                // console.log(jsonResponse);
+                console.log(jsonResponse);
                 
                 //get city Name from the API call
                 var cityName = jsonResponse.name; 
-                //  console.log(cityName);
+                 console.log(cityName);
 
                 //find correct date in the requested format
-                var currentDate = moment().format('(MM/DD/YYYY)')
+                // var currentDate = moment().format('(MM/DD/YYYY)')
                 // console.log(currentDate)
 
 
-                // var newDate = moment(currentDate).add(10, 'hours')
-                // console.log(newDate)
-                // var currentDate = moment.timezone(-25200).format("(MM/DD/YYYY)");
+
                 
-                // var sec = 1587081901;
-                // var date1 = new Date(sec * 1000);
-                // var timestr = date1.toLocaleTimeString();
+                //get unix timestamp
+                // var unixtimestamp = jsonResponse.dt; 
+                // console.log("Unix timesramp is " + unixtimestamp);
 
-                // console.log(date1, timestr);
-                // console.log(currentDate);
-
-
-                // let unix = 1587081901;
-                // let date = new Date(unix*1000);
-
-                // console.log(date);
-
-                // var dt = jsonResponse.timezone; 
-                // console.log(timezone);
-
-                // var localDt = jsonResponse.dt;
-                // console.log("this is localdt" + localDt);
-            
+                //get unix timezone stamp
+                var timezone = jsonResponse.timezone; 
+                console.log("Timezone is " + timezone);
 
 
-                // var dt = 1587087166
-                // const unixTimestamp = 1587087166
-    
-                // const milliseconds = 1587087166 * 1000 // 1575909015000
+                var formattedLocalCityDate
+
+
+                //function to handle the timezones and set the correct date based on city selected
+                var calculateLocalDate = function() {
+                    //get the current date
+                    var date = new Date(); 
+                    //calculate the UTC time of the current date
+                    var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+                    // console.log("now_utc timestamp is " + now_utc);
+                    
+                    //calculate the time with offset based on utc time and add to it the offset
+                    var timeWithTimeZoneOffset = now_utc + (timezone * 1000)
+                    // console.log("timeWithTimeZoneOffset is " + timeWithTimeZoneOffset);
+
+                    //calculate the the new date
+                    var newDate = timeWithTimeZoneOffset  + (timezone * 1000);
+                    var newDateUnformatted = new Date(newDate);
+                    // console.log("newDateUnformatted is " + newDateUnformatted);
+                    // console.log("newDate is " + newDate);
+
+                    //format the new date
+                    formattedLocalCityDate = moment(newDateUnformatted).format('(MM/DD/YYYY)')
+                    // console.log("formattedLocalCityDate is " + formattedLocalCityDate);
                 
-                // const dateObject = new Date(milliseconds)
+                }
+                //call the calculateLocalDate function
+                calculateLocalDate();
+
+
+             
                 
-                // const humanDateFormat = dateObject.toLocaleString()
-                // console.log(humanDateFormat);
-
-
-
-
-
-                // var utcSeconds = 1587084500;
-                // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-                // d.setUTCSeconds(utcSeconds);
-                // console.log(d)
-
-                // var dateString = moment.unix(utcSeconds).format("(MM/DD/YYYY)");
-                // console.log(dateString);
 
 
 
@@ -238,7 +235,7 @@ var getWeatherPerCity = function(city) {
 
 
                 //construct the title line for the current location
-                cityContainerEl.innerHTML = cityName + " " + currentDate;
+                cityContainerEl.innerHTML = cityName + " " + formattedLocalCityDate;
                 //assign the temperatureEl the value from the api call result
                 temperatureEl.innerHTML = "Temperature: " + temperature + " ℃";
                 //assign the humidityEl the value from the api call result            
