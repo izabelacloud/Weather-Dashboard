@@ -28,6 +28,9 @@ var futuredayhum4El = document.querySelector("#futuredayhum4");
 var futuredayhum5El = document.querySelector("#futuredayhum5");
 var weatherdataidEl = document.querySelector("#weatherdataid");
 // document.querySelector("#weatherdataid").style.display = "none";
+var showHiddenEl = document.querySelector("#hidden");
+var searchresultlistcontainerEl = document.querySelector("#searchresultlistcontainer");
+
 
 
 
@@ -40,6 +43,11 @@ var uvUrl
 
 
 
+var listItemClicker = function(event) {
+    var clickedCityName = event.currentTarget.textContent;
+    console.log(clickedCityName);
+    getWeatherPerCity(clickedCityName);
+}
 
 
 
@@ -229,6 +237,18 @@ var getWeatherPerCity = function(city) {
             cityDisplayEl.appendChild(windspeedEl);
 
 
+        
+            var newListItemUlEl = document.createElement("li");
+            newListItemUlEl.className = "list-group-item";
+            newListItemUlEl.textContent = cityName;
+            newListItemUlEl.addEventListener("click", listItemClicker);
+            searchresultlistcontainerEl.appendChild(newListItemUlEl);
+
+        
+
+
+
+
 
 
 
@@ -274,6 +294,8 @@ var getWeatherPerCity = function(city) {
             if(response.ok) {
                 response.json().then(function (responseapiFiveDayResponse) {
                     console.log(responseapiFiveDayResponse);
+
+
                     
                     //get the next 5 day date data and format it
                     var day1ofFive = responseapiFiveDayResponse.list[0].dt_txt;
@@ -371,7 +393,8 @@ var getWeatherPerCity = function(city) {
                     fiveDayContainerEl.appendChild(fiveDayContainerTitleEl);
 
          
-
+                    showHiddenEl.classList.remove("hidden");
+        
 
 
 
