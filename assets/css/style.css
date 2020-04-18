@@ -15,7 +15,7 @@
     /* background-color: var(--primary); */
     margin: 0;
     padding: 0;
-    /* font-family: "IBM Plex Sans", sans-serif; */
+    font-family: "IBM Plex Sans", sans-serif;
     /* color: var(--dark); */
     line-height: 1.5;
     font-size: 16px;
@@ -25,35 +25,44 @@
   .hidden {
     visibility: hidden;
   }
+
+  .fiveday-container {
+    padding-top: 50px;
+  }
   
 
   h1 {
       color: white;
   }
   
-  main {
+  /* main {
     margin: 20px auto;
-    width: 94%;
-  }
+    width: 100%;
+  } */
 
-  .navbar .navbar-nav {
+  /* .navbar .navbar-nav {
     display: inline-block;
     float: none;
     vertical-align: top;
-  }
+  } */
   
+
    
   /* p {
     font-size: 1.2rem;
   } */
   
    .btn {
-    /* display: flex;
-    flex-direction: row; */
+    display: flex;
+    flex-direction: row;
     float: left;
     flex-wrap: wrap;
     /* width: 20%; */
-    padding: 5px;
+    height: 50%;
+    /* padding: 5px; */
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 10px;
     background: #2196F3;
     color: white;
     font-size: 17px;
@@ -76,8 +85,13 @@
     clear: both;
     display: table;
   }
+
+  .cityinputform {
+    padding-top: 10px;
+    margin-top: 10px;
+  }
   
-  .btn-back {
+  /* .btn-back {
     border-radius: var(--border-radius);
     color: var(--primary);
     border: none;
@@ -91,24 +105,24 @@
     padding: 15px;
     text-decoration: none;
     font-size: 1.2rem;
-  }
+  } */
   
-   .btn-back:hover {
+   /* .btn-back:hover {
     color: var(--primary);
     background-color: var(--tertiary);
     transform: translate(0, 0);
     box-shadow: 2px 2px var(--dark);
-  }
+  } */
   
-  .hero {
+  /* .hero {
     padding: 3% 4%;
     background-color: var(--dark);
     color: var(--primary);
-  }
+  } */
   
-  .hero p {
+  /* .hero p {
     max-width: 75%;
-  }
+  } */
   
   /* .app-title {
     font-size: 3rem;
@@ -123,23 +137,27 @@
   .list-group {
     padding: 0;
     list-style: none;
+    padding-right: 10px;
+    margin-right: 10px;
+    width: 90%;
 
   }
   
-  .list-item {
+  /* .list-item {
     margin-bottom: 10px;
     padding: 1.5%;
     border-radius: var(--border-radius);
     background-color: var(--light-dark);
     color: var(--primary);
     text-decoration: none;
-  }
+  } */
 
 
-  
+/*   
   .list-item:hover {
-    /* background-color: var(--dark); */
-  }
+    background-color: var(--dark);
+  } */
+
 /*   
   .status-icon {
     padding: 2px 5px;
@@ -161,12 +179,12 @@
   /* .icon-success {
     color: rgb(29, 153, 255);
   } */
-
+/* 
   .icon {
     padding: 10px;
     width: 100px;
     height: 100px;
-  }
+  } */
   
   /* CARDS */
   .card {
@@ -195,26 +213,26 @@
   .form-textarea {
     display: block;
     padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
+    /* font-size: 17px; */
+    border:  solid grey 1px;
     float: left;
     width: 80%;
     height: 80%;
-    background: #f1f1f1; 
+    background: white;
   }
 
   
-  .form-label {
+  /* .form-label {
     font-size: 1.1rem;
     margin: 0 0 0 5px;
-  }
+  } */
   
   .form-input {
     /* width: 100%; */
     padding: 3%;
     margin: 5px 0;
     font-size: 1.2rem;
-    border: 2px solid var(--primary);
+    /* border: 2px solid var(--primary); */
     border-radius: var(--border-radius);
   }
   
@@ -291,9 +309,18 @@
   
   .col-3 {
     flex: 0 0 calc(100% * 3 / 12 - 2%);
+    padding-left: 30px;
+    padding-top: 20px;
+    margin-top: 10px;
+    /* padding-right: 100%; */
+  }
+
+  .weatherdataid {
+    margin-top: 10px;
+    padding-top: 30px;
   }
   
-  .col-4 {
+  /* .col-4 {
     flex: 0 0 calc(100% * 4 / 12 - 2%);
   }
   
@@ -311,10 +338,21 @@
   
   .col-8 {
     flex: 0 0 calc(100% * 8 / 12 - 2%);
-  }
+  } */
   
+.searchresultlistcontainer {
+  padding-top: 30px;
+  padding-right: 100px;
+}
+
   .col-9 {
     flex: 0 0 calc(100% * 9 / 12 - 2%);
+    padding-left: 30px;
+    padding-top: 9px;
+    padding-left: 60px;
+    border-left:  solid 0.5px grey;
+  
+    
   }
   
   .col-10 {
@@ -327,6 +365,7 @@
   
   .col-12 {
     flex: 0 0 100%;
+    padding-top: 100px;
   }
   
   /* col-sm */
