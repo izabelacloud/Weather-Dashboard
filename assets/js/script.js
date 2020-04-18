@@ -1,3 +1,6 @@
+//global variables
+
+//city input form elements
 var userFormEl = document.querySelector("#cityinputform");
 var cityInputEl = document.querySelector("#cityinput");
 var cityDisplayEl = document.querySelector("#result-container")
@@ -9,6 +12,7 @@ var humidityEl = document.querySelector("#humidity");
 var windspeedEl = document.querySelector("#windspeed");
 var uvindexEl = document.querySelector("#uvindex");
 var uvIndexIconEl = document.querySelector("#uvicon");
+//five day forecast elements
 var fiveDayContainerEl = document.querySelector("#fiveday-container");
 var fiveDayContainerTitleEl = document.querySelector("#fivedayforecast");
 var futureday1titleEl = document.querySelector("#futureday1title");
@@ -27,26 +31,30 @@ var futuredayhum3El = document.querySelector("#futuredayhum3");
 var futuredayhum4El = document.querySelector("#futuredayhum4");
 var futuredayhum5El = document.querySelector("#futuredayhum5");
 var weatherdataidEl = document.querySelector("#weatherdataid");
-// document.querySelector("#weatherdataid").style.display = "none";
+//variable to manage hidden section
 var showHiddenEl = document.querySelector("#hidden");
+//container for search history
 var searchresultlistcontainerEl = document.querySelector("#searchresultlistcontainer");
-
-
-
-
-
-
-
+//parameter variables
 var lat
 var lon
 var uvUrl
 
 
 
+
+
+
+
+//function to reload the city data based on the clicked city in the city history list
 var listItemClicker = function(event) {
+    //to check for the name of the clicked city
     var clickedCityName = event.currentTarget.textContent;
-    console.log(clickedCityName);
+    // console.log(clickedCityName);
+
+    //call the below functions based on the city name that was selected for reload
     getWeatherPerCity(clickedCityName);
+    getFiveDayForecast(clickedCityName);
 }
 
 
@@ -56,19 +64,17 @@ var listItemClicker = function(event) {
 //this function passes the username to the function so that we can filter the results
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    var cityName = cityInputEl.value.trim();
+    cityName = cityInputEl.value.trim();
     // console.log(cityName);
-    var apiFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=813b5c16fd3ec3678dd044ecba8f628a";
 
     if (cityName) {
         //to get the cities with the city name
         getWeatherPerCity(cityName);
-        getFiveDayForecast(apiFiveDayUrl);
+        getFiveDayForecast(cityName);
 
-   
         //to clear the input form field after submit
         cityInputEl.value = "";
-        // weatherdataidEl.removeChild(fiveDayContainerEl);
+
     } else {
         alert("Please enter a City")
     }
@@ -77,14 +83,10 @@ var formSubmitHandler = function(event) {
 
 
 
-//this function gets the response from the API
+//this function gets the response from the One Day Forecast API
 var getWeatherPerCity = function(city) {
     //format the api url
-    // var apiUrl = "https://api.github.com/users/" + user + "/repos";
-    // var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Bratislava&appid=813b5c16fd3ec3678dd044ecba8f628a"
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=813b5c16fd3ec3678dd044ecba8f628a";
-
-
 
 
     //make request to the URL
@@ -95,191 +97,160 @@ var getWeatherPerCity = function(city) {
         if (response.ok) {
             response.json().then(function(jsonResponse) {
                 // console.log(jsonResponse);
-                //this was added to convert the response data to JSON, it will be sent from getUserRepos() to displayRepos()
-                // displayRepos(data, user)
-             var cityName = jsonResponse.name; 
-            //  console.log(cityName);
+                
+                //get city Name from the API call
+                var cityName = jsonResponse.name; 
+                //  console.log(cityName);
 
-            //find correct date in the requested format
-            var currentDate = moment().format('(MM/DD/YYYY)')
-            // console.log(currentDate)
-            // var newDate = moment(currentDate).add(10, 'hours')
-            // console.log(newDate)
-            // var currentDate = moment.timezone(-25200).format("(MM/DD/YYYY)");
+                //find correct date in the requested format
+                var currentDate = moment().format('(MM/DD/YYYY)')
+                // console.log(currentDate)
+
+
+                // var newDate = moment(currentDate).add(10, 'hours')
+                // console.log(newDate)
+                // var currentDate = moment.timezone(-25200).format("(MM/DD/YYYY)");
+                
+                // var sec = 1587081901;
+                // var date1 = new Date(sec * 1000);
+                // var timestr = date1.toLocaleTimeString();
+
+                // console.log(date1, timestr);
+                // console.log(currentDate);
+
+
+                // let unix = 1587081901;
+                // let date = new Date(unix*1000);
+
+                // console.log(date);
+
+                // var dt = jsonResponse.timezone; 
+                // console.log(timezone);
+
+                // var localDt = jsonResponse.dt;
+                // console.log("this is localdt" + localDt);
             
-            // var sec = 1587081901;
-            // var date1 = new Date(sec * 1000);
-            // var timestr = date1.toLocaleTimeString();
-
-            // console.log(date1, timestr);
-            // console.log(currentDate);
 
 
-            // let unix = 1587081901;
-            // let date = new Date(unix*1000);
-
-            // console.log(date);
-
-            // var dt = jsonResponse.timezone; 
-            // console.log(timezone);
-
-            // var localDt = jsonResponse.dt;
-            // console.log("this is localdt" + localDt);
-           
-
-
-            // var dt = 1587087166
-            // const unixTimestamp = 1587087166
- 
-            // const milliseconds = 1587087166 * 1000 // 1575909015000
-            
-            // const dateObject = new Date(milliseconds)
-            
-            // const humanDateFormat = dateObject.toLocaleString()
-            // console.log(humanDateFormat);
+                // var dt = 1587087166
+                // const unixTimestamp = 1587087166
+    
+                // const milliseconds = 1587087166 * 1000 // 1575909015000
+                
+                // const dateObject = new Date(milliseconds)
+                
+                // const humanDateFormat = dateObject.toLocaleString()
+                // console.log(humanDateFormat);
 
 
 
 
 
-            // var utcSeconds = 1587084500;
-            // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-            // d.setUTCSeconds(utcSeconds);
-            // console.log(d)
+                // var utcSeconds = 1587084500;
+                // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                // d.setUTCSeconds(utcSeconds);
+                // console.log(d)
 
-            // var dateString = moment.unix(utcSeconds).format("(MM/DD/YYYY)");
-            // console.log(dateString);
-
-
-
-
-            //this conditionality handles conditional show and hide of images based on the response --> source for codes: https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
-            var weatherIcon = jsonResponse.weather[0].main;
-            // console.log(weatherIcon);
-
-            if (weatherIcon === "Clouds") {
-                iconEl.setAttribute("src", "./assets/images/overcast.png");
-            }
-            else if (weatherIcon === "Clear") {
-                iconEl.setAttribute("src", "./assets/images/sunny.png")
-            }
-            else if (weatherIcon === "Fog") {
-                iconEl.setAttribute("src", "./assets/images/fog.png")
-            }
-            else if (weatherIcon === "Snow") {
-                iconEl.setAttribute("src", "./assets/images/snowflake.png")
-            }
-            else if (weatherIcon === "Rain") {
-                iconEl.setAttribute("src", "./assets/images/rain.png")
-            }
-            else if (weatherIcon === "Drizzle") {
-                iconEl.setAttribute("src", "./assets/images/rain.png")
-            }
-            else if (weatherIcon === "Thunderstorm") {
-                iconEl.setAttribute("src", "./assets/images/rain.png")
-            }
-            else if (weatherIcon === "Mist") {
-                iconEl.setAttribute("src", "./assets/images/fog.png")
-            }
+                // var dateString = moment.unix(utcSeconds).format("(MM/DD/YYYY)");
+                // console.log(dateString);
 
 
 
 
-            //get temperature data
-            var temperature = jsonResponse.main.temp; 
-            // console.log(temperature + " ℃");
+                //this conditionality handles conditional show and hide of images based on the response --> source for codes: https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+                var weatherIcon = jsonResponse.weather[0].main;
+                // console.log(weatherIcon);
 
-            //get humidity data
-            var humidity = jsonResponse.main.humidity;
-            // console.log(humidity + "%");
-
-            //get wind speed data
-            var windSpeed = jsonResponse.wind.speed;
-            // console.log(windSpeed + " MPH");
-
-            //get latitude data
-            lat = jsonResponse.coord.lat;
-            // console.log(lat);
-            //get longitude data
-            lon = jsonResponse.coord.lon;
-            // console.log(lon);
-            //define URL for UV index based on the retrieved data from the one day weather api and pass it into the URL
-            uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=813b5c16fd3ec3678dd044ecba8f628a&lat=" + lat + "&lon=" + lon;
-            //call the getUvIndex function
-            getUvIndex(uvUrl);
-
-
-
-            //construct the title line for the current location
-            cityContainerEl.innerHTML = cityName + " " + currentDate;
-            //assign the temperatureEl the value from the api call result
-            temperatureEl.innerHTML = "Temperature: " + temperature + " ℃";
-            //assign the humidityEl the value from the api call result            
-            humidityEl.innerHTML = "Humidity: " + humidity + " %";
-            //assign the windspeedEl the value from the api call result    
-            windspeedEl.innerHTML = "Wind Speed: "  + windSpeed + " MPH";
+                if (weatherIcon === "Clouds") {
+                    iconEl.setAttribute("src", "./assets/images/overcast.png");
+                }
+                else if (weatherIcon === "Clear") {
+                    iconEl.setAttribute("src", "./assets/images/sunny.png")
+                }
+                else if (weatherIcon === "Fog") {
+                    iconEl.setAttribute("src", "./assets/images/fog.png")
+                }
+                else if (weatherIcon === "Snow") {
+                    iconEl.setAttribute("src", "./assets/images/snowflake.png")
+                }
+                else if (weatherIcon === "Rain") {
+                    iconEl.setAttribute("src", "./assets/images/rain.png")
+                }
+                else if (weatherIcon === "Drizzle") {
+                    iconEl.setAttribute("src", "./assets/images/rain.png")
+                }
+                else if (weatherIcon === "Thunderstorm") {
+                    iconEl.setAttribute("src", "./assets/images/rain.png")
+                }
+                else if (weatherIcon === "Mist") {
+                    iconEl.setAttribute("src", "./assets/images/fog.png")
+                }
 
 
+                //get temperature data
+                var temperature = jsonResponse.main.temp; 
+                // console.log(temperature + " ℃");
 
+                //get humidity data
+                var humidity = jsonResponse.main.humidity;
+                // console.log(humidity + "%");
 
+                //get wind speed data
+                var windSpeed = jsonResponse.wind.speed;
+                // console.log(windSpeed + " MPH");
 
-
-
-            //add the current location to the page
-            cityDisplayEl.appendChild(cityContainerEl);
-            //add icon to the page
-            cityDisplayEl.appendChild(iconEl);
-            //add temperature to the page
-            cityDisplayEl.appendChild(temperatureEl);
-            //add humidity to the page
-            cityDisplayEl.appendChild(humidityEl);
-            //add windspeed to the page
-            cityDisplayEl.appendChild(windspeedEl);
-
-
-        
-            var newListItemUlEl = document.createElement("li");
-            newListItemUlEl.className = "list-group-item";
-            newListItemUlEl.textContent = cityName;
-            newListItemUlEl.addEventListener("click", listItemClicker);
-            searchresultlistcontainerEl.appendChild(newListItemUlEl);
-
-        
+                //get latitude data
+                lat = jsonResponse.coord.lat;
+                // console.log(lat);
+                //get longitude data
+                lon = jsonResponse.coord.lon;
+                // console.log(lon);
+                //define URL for UV index based on the retrieved data from the one day weather api and pass it into the URL
+                uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=813b5c16fd3ec3678dd044ecba8f628a&lat=" + lat + "&lon=" + lon;
+                //call the getUvIndex function
+                getUvIndex(uvUrl);
 
 
 
+                //construct the title line for the current location
+                cityContainerEl.innerHTML = cityName + " " + currentDate;
+                //assign the temperatureEl the value from the api call result
+                temperatureEl.innerHTML = "Temperature: " + temperature + " ℃";
+                //assign the humidityEl the value from the api call result            
+                humidityEl.innerHTML = "Humidity: " + humidity + " %";
+                //assign the windspeedEl the value from the api call result    
+                windspeedEl.innerHTML = "Wind Speed: "  + windSpeed + " MPH";
 
 
+                //add the current location to the page
+                cityDisplayEl.appendChild(cityContainerEl);
+                //add icon to the page
+                cityDisplayEl.appendChild(iconEl);
+                //add temperature to the page
+                cityDisplayEl.appendChild(temperatureEl);
+                //add humidity to the page
+                cityDisplayEl.appendChild(humidityEl);
+                //add windspeed to the page
+                cityDisplayEl.appendChild(windspeedEl);
 
 
-            })
-            //this is the API call for the UV API
-            // .then(function(response) {
+                //create dynamic list items on the left side of the screen based on the input of the user
+                var newListItemUlEl = document.createElement("li");
+                newListItemUlEl.className = "list-group-item";
+                newListItemUlEl.textContent = cityName;
+                //on click of any of the list items reload the data for that city, call the function above that listens to this click
+                newListItemUlEl.addEventListener("click", listItemClicker);
+                //display the searched city data on the page
+                searchresultlistcontainerEl.appendChild(newListItemUlEl);
 
-            //     fetch(uvUrl).then(function(response){
-            //         response.json().then(function (responseUvUrl) {
-            //             console.log(responseUvUrl);
-            //         })
-            //     })
-            // })
-            //this is the API call for the 5 day forecast
-            // .then(function(response) {
-
-            //     fetch(apiFiveDayUrl).then(function(response){
-            //         response.json().then(function (responseapiFiveDayUrl) {
-            //             console.log(responseapiFiveDayUrl);
-            //         })
-            //     })
-            // })
-
-            
+            })          
 
         } else {
             alert("Error: " + response.statusText);
         }
     })
 
-    //this is getting chained in the end of the THEN METHOD
+    //this is getting chained in the end of the THEN method
     .catch(function(error) {
         alert("Unable to connect to Open Weather Map")
     })
@@ -289,7 +260,8 @@ var getWeatherPerCity = function(city) {
 
 
     //this is the API call for the 5 day forecast
-    var getFiveDayForecast = function (apiFiveDayUrl) {
+    var getFiveDayForecast = function (cityName) {
+        var apiFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=813b5c16fd3ec3678dd044ecba8f628a";
         fetch(apiFiveDayUrl).then(function(response) {
             if(response.ok) {
                 response.json().then(function (responseapiFiveDayResponse) {
@@ -361,7 +333,6 @@ var getWeatherPerCity = function(city) {
 
 
 
-
                     //construct the 5 day forecast title
                     fiveDayContainerTitleEl.innerHTML = "5-Day Forecast: ";
                     console.log(fiveDayContainerTitleEl);
@@ -387,21 +358,12 @@ var getWeatherPerCity = function(city) {
                     futuredayhum4El.innerHTML = "Humidity: " + humidityDay4 + "%";
                     futuredayhum5El.innerHTML = "Humidity: " + humidityDay5 + "%";
 
-
-
                     //add the title to the section of the page
                     fiveDayContainerEl.appendChild(fiveDayContainerTitleEl);
 
-         
+                    //this will remove the class that was defaulted from the HTML file so that the 5 weather forecast box shows up
                     showHiddenEl.classList.remove("hidden");
         
-
-
-
-
-                    
-
-
 
                 })
             }
@@ -414,6 +376,7 @@ var getWeatherPerCity = function(city) {
         })
     }
 
+    
 
     //this is the API call for the UV API
     var getUvIndex = function (uvUrl) {
@@ -423,9 +386,6 @@ var getWeatherPerCity = function(city) {
                     // console.log(responseUvUrl);
                     //get UV index data
                     var uvIndex = responseUvUrl.value;
-                    // uvIndex.setAttribute("class", "icon-danger")
-
-                    // uvindexEl.className = "icon-danger";
                     // console.log(uvIndex);
 
                     //conditionality to add a indicator / image for the UV index color
@@ -455,8 +415,6 @@ var getWeatherPerCity = function(city) {
                     cityDisplayEl.appendChild(uvindexEl);
                     cityDisplayEl.appendChild(uvIndexIconEl);
 
-
-
                 })
             }
             else {
@@ -470,26 +428,6 @@ var getWeatherPerCity = function(city) {
 
 
 
-//this function will display the city data
-// var displayCity = function(city, searchTerm) {
-//     console.log(city);
-//     console.log(searchTerm);
 
-
-//     //adding if else condition to check if the user has any repos
-//     if (city ==="") {
-//         cityContainerEl.textContent = "No cities found."
-//     }
-
-//     //clear old content
-//     cityContainerEl.textContent = "";
-//     citySearchTerm.textContent = searchTerm;
-
-//     var cityNameEl = document.createElement("h2");
-//     cityNameEl.innerHTML = "Bratislava";
-//     cityContainerEl.appendChild( cityNameEl);
-
-// }
-
-
+//this listens to the user button click on submitting the input 
 userFormEl.addEventListener("submit", formSubmitHandler);
