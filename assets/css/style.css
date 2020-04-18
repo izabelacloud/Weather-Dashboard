@@ -166,15 +166,18 @@
   
   /* CARDS */
   .card {
-    margin: 0 0 20px 0;
-    border: 3px solid var(--dark);
+    margin: 10px 10px 10px ;
+    border: 1px solid rgb(43, 98, 216);
     border-radius: var(--border-radius);
+    background-color: rgb(20, 115, 223);
+    color: white;
+ 
   }
   
   .card-header {
     /* color: var(--primary);
     background-color: var(--dark); */
-    padding: 2.5%;
+    /* padding: 2.5%; */
     border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
   }
   
@@ -193,8 +196,9 @@
     float: left;
     width: 80%;
     height: 80%;
-    background: #f1f1f1;
+    background: #f1f1f1; 
   }
+
   
   .form-label {
     font-size: 1.1rem;
@@ -211,18 +215,18 @@
   }
   
   /* HEIGHT / WIDTH UTILS */
-  .min-100-vh {
+  /* .min-100-vh {
     min-height: 100vh;
-  }
+  } */
   
-  .min-100-vw {
+  /* .min-100-vw {
     min-width: 100vw;
   }
-  
+   */
   /* FONT UTILS */
-  .text-uppercase {
+  /* .text-uppercase {
     text-transform: uppercase;
-  }
+  } */
   
   
   /* FLEX CONTENT */

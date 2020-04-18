@@ -9,6 +9,27 @@ var humidityEl = document.querySelector("#humidity");
 var windspeedEl = document.querySelector("#windspeed");
 var uvindexEl = document.querySelector("#uvindex");
 var uvIndexIconEl = document.querySelector("#uvicon");
+var fiveDayContainerEl = document.querySelector("#fiveday-container");
+var fiveDayContainerTitleEl = document.querySelector("#fivedayforecast");
+var futureday1titleEl = document.querySelector("#futureday1title");
+var futureday2titleEl = document.querySelector("#futureday2title");
+var futureday3titleEl = document.querySelector("#futureday3title");
+var futureday4titleEl = document.querySelector("#futureday4title");
+var futureday5titleEl = document.querySelector("#futureday5title");
+var futuredaytemp1El = document.querySelector("#futuredaytemp1");
+var futuredaytemp2El = document.querySelector("#futuredaytemp2");
+var futuredaytemp3El = document.querySelector("#futuredaytemp3");
+var futuredaytemp4El = document.querySelector("#futuredaytemp4");
+var futuredaytemp5El = document.querySelector("#futuredaytemp5");
+var futuredayhum1El = document.querySelector("#futuredayhum1");
+var futuredayhum2El = document.querySelector("#futuredayhum2");
+var futuredayhum3El = document.querySelector("#futuredayhum3");
+var futuredayhum4El = document.querySelector("#futuredayhum4");
+var futuredayhum5El = document.querySelector("#futuredayhum5");
+var weatherdataidEl = document.querySelector("#weatherdataid");
+// document.querySelector("#weatherdataid").style.display = "none";
+
+
 
 
 
@@ -29,7 +50,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityName = cityInputEl.value.trim();
     // console.log(cityName);
-    var apiFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=813b5c16fd3ec3678dd044ecba8f628a";
+    var apiFiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=813b5c16fd3ec3678dd044ecba8f628a";
 
     if (cityName) {
         //to get the cities with the city name
@@ -39,6 +60,7 @@ var formSubmitHandler = function(event) {
    
         //to clear the input form field after submit
         cityInputEl.value = "";
+        // weatherdataidEl.removeChild(fiveDayContainerEl);
     } else {
         alert("Please enter a City")
     }
@@ -181,7 +203,7 @@ var getWeatherPerCity = function(city) {
 
 
             //construct the title line for the current location
-            cityContainerEl.innerHTML = cityName + currentDate;
+            cityContainerEl.innerHTML = cityName + " " + currentDate;
             //assign the temperatureEl the value from the api call result
             temperatureEl.innerHTML = "Temperature: " + temperature + " ℃";
             //assign the humidityEl the value from the api call result            
@@ -253,11 +275,108 @@ var getWeatherPerCity = function(city) {
                 response.json().then(function (responseapiFiveDayResponse) {
                     console.log(responseapiFiveDayResponse);
                     
-                    //get date data
-                    // var temperature = jsonResponse.main.temp; 
-                    // console.log(temperature + " ℃");
-                    var day1 = responseapiFiveDayResponse.list[0].dt;
-                    console.log("day1 unixdate" + day1);
+                    //get the next 5 day date data and format it
+                    var day1ofFive = responseapiFiveDayResponse.list[0].dt_txt;
+                    // console.log("day1ofFive " + day1ofFive);
+                    var formattedDay1ofFive = moment(day1ofFive).format('MM/DD/YYYY')
+                    console.log(formattedDay1ofFive);
+
+                    var day2ofFive = responseapiFiveDayResponse.list[8].dt_txt;
+                    // console.log("day2ofFive " + day2ofFive);
+                    var formattedDay2ofFive = moment(day2ofFive).format('MM/DD/YYYY')
+                    console.log(formattedDay2ofFive);
+
+                    var day3ofFive = responseapiFiveDayResponse.list[16].dt_txt;
+                    // console.log("day3ofFive " + day3ofFive);
+                    var formattedDay3ofFive = moment(day3ofFive).format('MM/DD/YYYY')
+                    console.log(formattedDay3ofFive);
+
+                    var day4ofFive = responseapiFiveDayResponse.list[24].dt_txt;
+                    // console.log("day4ofFive " + day4ofFive);
+                    var formattedDay4ofFive = moment(day4ofFive).format('MM/DD/YYYY')
+                    console.log(formattedDay4ofFive);
+
+                    var day5ofFive = responseapiFiveDayResponse.list[32].dt_txt;
+                    // console.log("day5ofFive " + day5ofFive);
+                    var formattedDay5ofFive = moment(day5ofFive).format('MM/DD/YYYY')
+                    console.log(formattedDay5ofFive);
+
+
+
+                    //get the next 5 day temperature
+                    var temperatureDay1 = responseapiFiveDayResponse.list[0].main.temp; 
+                    console.log(temperatureDay1 + " ℃");
+
+                    var temperatureDay2 = responseapiFiveDayResponse.list[8].main.temp; 
+                    console.log(temperatureDay2 + " ℃");
+
+                    var temperatureDay3 = responseapiFiveDayResponse.list[16].main.temp; 
+                    console.log(temperatureDay3 + " ℃");
+
+                    var temperatureDay4 = responseapiFiveDayResponse.list[24].main.temp; 
+                    console.log(temperatureDay4 + " ℃");
+
+                    var temperatureDay5 = responseapiFiveDayResponse.list[32].main.temp; 
+                    console.log(temperatureDay5 + " ℃");
+
+
+
+                    //get the next 5 day humidity
+                    var humidityDay1 = responseapiFiveDayResponse.list[0].main.humidity;
+                    console.log(humidityDay1 + "%");
+
+                    var humidityDay2 = responseapiFiveDayResponse.list[8].main.humidity;
+                    console.log(humidityDay2 + "%");
+
+                    var humidityDay3 = responseapiFiveDayResponse.list[16].main.humidity;
+                    console.log(humidityDay3 + "%");
+
+                    var humidityDay4 = responseapiFiveDayResponse.list[24].main.humidity;
+                    console.log(humidityDay4 + "%");
+
+                    var humidityDay5 = responseapiFiveDayResponse.list[32].main.humidity;
+                    console.log(humidityDay5 + "%");
+
+
+
+
+                    //construct the 5 day forecast title
+                    fiveDayContainerTitleEl.innerHTML = "5-Day Forecast: ";
+                    console.log(fiveDayContainerTitleEl);
+
+                    //add 5 day forecast dates to the page
+                    futureday1titleEl.innerHTML = formattedDay1ofFive;
+                    futureday2titleEl.innerHTML = formattedDay2ofFive;
+                    futureday3titleEl.innerHTML = formattedDay3ofFive;
+                    futureday4titleEl.innerHTML = formattedDay4ofFive;
+                    futureday5titleEl.innerHTML = formattedDay5ofFive;
+
+                    //add 5 day forecast temperatures to the page
+                    futuredaytemp1El.innerHTML = "Temp: " + temperatureDay1 + " ℃";
+                    futuredaytemp2El.innerHTML = "Temp: " + temperatureDay2 + " ℃";
+                    futuredaytemp3El.innerHTML = "Temp: " + temperatureDay3 + " ℃";
+                    futuredaytemp4El.innerHTML = "Temp: " + temperatureDay4 + " ℃";
+                    futuredaytemp5El.innerHTML = "Temp: " + temperatureDay5 + " ℃";
+
+                    //add 5 day forecast humidity to the page
+                    futuredayhum1El.innerHTML = "Humidity: " + humidityDay1 + "%";
+                    futuredayhum2El.innerHTML = "Humidity: " + humidityDay2 + "%";
+                    futuredayhum3El.innerHTML = "Humidity: " + humidityDay3 + "%";
+                    futuredayhum4El.innerHTML = "Humidity: " + humidityDay4 + "%";
+                    futuredayhum5El.innerHTML = "Humidity: " + humidityDay5 + "%";
+
+
+
+                    //add the title to the section of the page
+                    fiveDayContainerEl.appendChild(fiveDayContainerTitleEl);
+
+         
+
+
+
+
+
+                    
 
 
 
@@ -314,6 +433,7 @@ var getWeatherPerCity = function(city) {
                     cityDisplayEl.appendChild(uvIndexIconEl);
 
 
+
                 })
             }
             else {
@@ -350,4 +470,3 @@ var getWeatherPerCity = function(city) {
 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-// getWeatherPerCity();
