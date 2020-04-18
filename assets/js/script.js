@@ -508,20 +508,6 @@ var getWeatherPerCity = function(city) {
                     futureday4titleEl.innerHTML = formattedDay4ofFive;
                     futureday5titleEl.innerHTML = formattedDay5ofFive;
 
-
-                    //add 5 day forecast icons to the page
-
-                    // futureday1iconEl.innerHTML = futureweatherIcon1;
-                    // cardbody1El.appendChild(futureweatherIcon1);
-
-
-                    //                     var futureday1iconEl = document.querySelector("#futureday1icon");
-// var futureday2iconEl = document.querySelector("#futureday2icon");
-// var futureday3iconEl = document.querySelector("#futureday3icon");
-// var futureday4iconEl = document.querySelector("#futureday4icon");
-// var futureday5iconEl = document.querySelector("#futureday4icon");
-
-
                     //add 5 day forecast temperatures to the page
                     futuredaytemp1El.innerHTML = "Temp: " + temperatureDay1 + " ℃";
                     futuredaytemp2El.innerHTML = "Temp: " + temperatureDay2 + " ℃";
