@@ -56,6 +56,8 @@ var lat
 var lon
 var uvUrl
 
+var cityArray = [];
+
 
 
 
@@ -87,6 +89,13 @@ var formSubmitHandler = function(event) {
         //to get the cities with the city name
         getWeatherPerCity(cityName);
         getFiveDayForecast(cityName);
+        
+
+        //push selected city name to the cityArray array
+        cityArray.push(cityName);
+        //set the city to the localStorage
+        localStorage.setItem("city", JSON.stringify(cityArray));
+        
 
         //to clear the input form field after submit
         cityInputEl.value = "";
