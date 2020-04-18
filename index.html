@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
@@ -17,11 +16,10 @@
 <body>
 
     <nav class="navbar navbar-light bg-dark">
-        <!-- Navbar content -->
         <h1>Weather Dashboard</h1>
-      </nav>
+    </nav>
 
-      <div class="row">
+    <div class="row">
 
           <div class="col-3">
             <form id="cityinputform">
@@ -47,230 +45,85 @@
                   <img id="uvicon">
                 </div>
             </div>
-      </div>
-<!-- 
-      <div class="row"> -->
-
-
-
-        <div class="col-3">
-
-          <ul class="list-group" id="searchresultlistcontainer">
-          </ul>
-
-        </div>
-
-        <div class="col-9">
-
-<div class="row hidden" id="hidden">
-
-     <div class="col-12">
-
-      <div id="fiveday-container" class="list-group">
-
-        <h3 id="fivedayforecast"></h3>
-      </div>
-
-     </div>
-
-     <!-- <div class="col-12"> -->
-
-
-
-      <div id="fiveday-container" class="list-group">
-
-            <h3 id="fivedayforecast"></h3>
           </div>
 
-          <div class="card " style="width: 9rem;">
-            <div class="card-body">
-              <h5 class="card-title" id="futureday1title">Card title</h5>
-              <img id=futureday1icon />
-              <p class="card-text" id="futuredaytemp1">Temp: </p>
-              <p class="card-text" id="futuredayhum1">Humidity: </p>
-            </div>
+
+          <div class="col-3">
+                <ul class="list-group" id="searchresultlistcontainer">
+                </ul>
           </div>
-      
-          <div class="card " style="width: 9rem;">
-            <div class="card-body">
-              <h5 class="card-title" id="futureday2title">Card title</h5>
-              <img id=futureday2icon />
-              <p class="card-text" id="futuredaytemp2">Temp: </p>
-              <p class="card-text" id="futuredayhum2">Humidity: </p>
-            </div>
-          </div>
-
-          <div class="card" style="width: 9rem;">
-            <div class="card-body">
-              <h5 class="card-title" id="futureday3title">Card title</h5>
-              <img id=futureday3icon />
-              <p class="card-text" id="futuredaytemp3">Temp: </p>
-              <p class="card-text" id="futuredayhum3">Humidity: </p>
-            </div>
-          </div>
-
-          <div class="card" style="width: 9rem;">
-            <div class="card-body">
-              <h5 class="card-title" id="futureday4title">Card title</h5>
-              <img id=futureday4icon />
-              <p class="card-text" id="futuredaytemp4">Temp: </p>
-              <p class="card-text" id="futuredayhum4">Humidity: </p>
-            </div>
-          </div>
-
-          <div class="card" style="width: 9rem;">
-            <div class="card-body">
-              <h5 class="card-title" id="futureday5title">Card title</h5>
-              <img id=futureday5icon />
-              <p class="card-text" id="futuredaytemp5">Temp: </p>
-              <p class="card-text" id="futuredayhum5">Humidity: </p>
-            </div>
-          </div>
-
-        <!-- </div> -->
-        </div>
-
-          <!-- end of nine div -->
-        </div>
-
-      <!-- </div> -->
-
 
     
+          <div class="col-9">
+
+                <div class="row hidden" id="hidden">
+                  <div class="col-12">
+                        <div id="fiveday-container" class="list-group">
+                        <h3 id="fivedayforecast"></h3>
+                  </div>
+                </div>
 
 
-    <!-- <main class="flex-row justify-space-between container">
-        <div class="col-3">
-
-        <form id="cityinputform">
-            <h3>Search for a City:</h3>
-            <input class="form-input form-label" type="text" placeholder="Search.." name="city" id="cityinput">
-
-            <button type="submit" class="btn fa fa-search" id="searchbtnid"></button>
-          </form>
-
-          <div class="">
-
-             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-            </div>
-
-    
-        </div>
+                <div id="fiveday-container" class="list-group">
+                    <h3 id="fivedayforecast"></h3>
+                </div>
 
 
-
-
-
-          <div class="col-9" id="weatherdataid">
-            <h3><span id="city-search-term"></span></h3>   
+                <div class="card " style="width: 9rem;">
+                  <div class="card-body">
+                    <h5 class="card-title" id="futureday1title">Card title</h5>
+                    <img id=futureday1icon />
+                    <p class="card-text" id="futuredaytemp1">Temp: </p>
+                    <p class="card-text" id="futuredayhum1">Humidity: </p>
+                  </div>
+                </div>
             
-            <div id="result-container" >
-
-                <h3 id="city-container"></h3>
-                <img id="icon">
-              
-                <div>
-                  <p id="temperature"></p>
-                  <p id="humidity"></p>
-                  <p id="windspeed"></p>
-                  <p><span id="uvindex" class=""></span></p>
-                  <img id="uvicon">
+                <div class="card " style="width: 9rem;">
+                  <div class="card-body">
+                    <h5 class="card-title" id="futureday2title">Card title</h5>
+                    <img id=futureday2icon />
+                    <p class="card-text" id="futuredaytemp2">Temp: </p>
+                    <p class="card-text" id="futuredayhum2">Humidity: </p>
+                  </div>
                 </div>
 
-            </div>
-
-          <br>
-          <br>
-
-            <div id="fiveday-container" class="list-group">
-
-                <h3 id="fivedayforecast"></h3>
-            </div>
-
-
-            <div class="row">
-
-              <div class="card " style="width: 9rem;">
-                <div class="card-body">
-                  <h5 class="card-title" id="futureday1title">Card title</h5>
-                  <img id=futureday1icon />
-                  <p class="card-text" id="futuredaytemp1">Temp: </p>
-                  <p class="card-text" id="futuredayhum1">Humidity: </p>
+                <div class="card" style="width: 9rem;">
+                  <div class="card-body">
+                    <h5 class="card-title" id="futureday3title">Card title</h5>
+                    <img id=futureday3icon />
+                    <p class="card-text" id="futuredaytemp3">Temp: </p>
+                    <p class="card-text" id="futuredayhum3">Humidity: </p>
+                  </div>
                 </div>
-              </div>
-          
-              <div class="card " style="width: 9rem;">
-                <div class="card-body">
-                  <h5 class="card-title" id="futureday2title">Card title</h5>
-                  <img id=futureday2icon />
-                  <p class="card-text" id="futuredaytemp2">Temp: </p>
-                  <p class="card-text" id="futuredayhum2">Humidity: </p>
+
+                <div class="card" style="width: 9rem;">
+                  <div class="card-body">
+                    <h5 class="card-title" id="futureday4title">Card title</h5>
+                    <img id=futureday4icon />
+                    <p class="card-text" id="futuredaytemp4">Temp: </p>
+                    <p class="card-text" id="futuredayhum4">Humidity: </p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="card" style="width: 9rem;">
-                <div class="card-body">
-                  <h5 class="card-title" id="futureday3title">Card title</h5>
-                  <img id=futureday3icon />
-                  <p class="card-text" id="futuredaytemp3">Temp: </p>
-                  <p class="card-text" id="futuredayhum3">Humidity: </p>
+                <div class="card" style="width: 9rem;">
+                  <div class="card-body">
+                    <h5 class="card-title" id="futureday5title">Card title</h5>
+                    <img id=futureday5icon />
+                    <p class="card-text" id="futuredaytemp5">Temp: </p>
+                    <p class="card-text" id="futuredayhum5">Humidity: </p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="card" style="width: 9rem;">
-                <div class="card-body">
-                  <h5 class="card-title" id="futureday4title">Card title</h5>
-                  <img id=futureday4icon />
-                  <p class="card-text" id="futuredaytemp4">Temp: </p>
-                  <p class="card-text" id="futuredayhum4">Humidity: </p>
-                </div>
-              </div>
-
-              <div class="card" style="width: 9rem;">
-                <div class="card-body">
-                  <h5 class="card-title" id="futureday5title">Card title</h5>
-                  <img id=futureday5icon />
-                  <p class="card-text" id="futuredaytemp5">Temp: </p>
-                  <p class="card-text" id="futuredayhum5">Humidity: </p>
-                </div>
-              </div>
-
-            </div>
-
-        
+          </div>
+    </div>
 
 
-        </div>
-  
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-    
-      </main> -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!--add touch punch here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
